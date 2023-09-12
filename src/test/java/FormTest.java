@@ -32,7 +32,7 @@ public class FormTest {
 
     @Test
     void testUI() {
-        open("https://demoqa.com/automation-practice-form");
+        open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         $("#firstName").setValue(USERNAME);
@@ -45,10 +45,13 @@ public class FormTest {
         $(".react-datepicker__year-select").selectOption("1999");
         $(".react-datepicker__day--008").click();
         $("#subjectsInput").setValue("p").pressEnter();
-        $("label[for='hobbies-checkbox-1']").click();
+        $(byText(HOBBIES)).click();
         $("#uploadPicture").uploadFromClasspath(PICTURE);
         $("#currentAddress").sendKeys(ADDRESS);
-        $("#react-select-3-input").setValue(STATE).pressEnter();
+        //$("#react-select-3-input").setValue(STATE).pressEnter();
+        $(byText("Select State")).click();
+        $(byText(STATE)).click();
+
         $("#city").click();
         $("#react-select-4-input").setValue(CITY).pressEnter();
         $("#submit").click();
@@ -64,7 +67,6 @@ public class FormTest {
                 text(PICTURE),
                 text(ADDRESS),
                 text(STATE + " " + CITY));
-        $("#closeLargeModal").click();
     }
 }
 

@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -38,22 +39,22 @@ public class FormTest {
         $("#firstName").setValue(USERNAME);
         $("#lastName").setValue(USERLASTNAME);
         $("#userEmail").sendKeys(USEREMAIL);
-        $(byText("Male")).click();
+        $("#genterWrapper").
+                find(byText(SEX)).click();
         $("#userNumber").sendKeys(USERPHONE);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("June");
         $(".react-datepicker__year-select").selectOption("1999");
         $(".react-datepicker__day--008").click();
         $("#subjectsInput").setValue("p").pressEnter();
-        $(byText(HOBBIES)).click();
+        $("#hobbiesWrapper").
+                find(byText(HOBBIES)).click();
         $("#uploadPicture").uploadFromClasspath(PICTURE);
         $("#currentAddress").sendKeys(ADDRESS);
-        //$("#react-select-3-input").setValue(STATE).pressEnter();
         $(byText("Select State")).click();
         $(byText(STATE)).click();
-
         $("#city").click();
-        $("#react-select-4-input").setValue(CITY).pressEnter();
+        $(byText(CITY)).click();
         $("#submit").click();
         $("#example-modal-sizes-title-lg").isDisplayed();
         $(".table-responsive").shouldHave(

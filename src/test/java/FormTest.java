@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -51,12 +52,12 @@ public class FormTest {
                 find(byText(HOBBIES)).click();
         $("#uploadPicture").uploadFromClasspath(PICTURE);
         $("#currentAddress").sendKeys(ADDRESS);
-        $(byText("Select State")).click();
-        $(byText(STATE)).click();
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText(STATE)).click();
         $("#city").click();
-        $(byText(CITY)).click();
+        $("#stateCity-wrapper").$(byText(CITY)).click();
         $("#submit").click();
-        $("#example-modal-sizes-title-lg").isDisplayed();
+        $("#example-modal-sizes-title-lg").shouldBe(visible);
         $(".table-responsive").shouldHave(
                 text(USERNAME+USERLASTNAME),
                 text(USEREMAIL),
